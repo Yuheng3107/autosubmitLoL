@@ -18,11 +18,8 @@ driver.implicitly_wait(1)
 model_url = "https://d1lojwke7j5vfp.cloudfront.net/models/create"
 model_name = "test_model"
 training_job_name = "team45-mingjun-6"
-try:
-    # Log In
-    login(driver)
-    # Wait for login
-    time.sleep(1)
+
+def add_model(driver, model_name: str, training_job_name: str):
     driver.get(model_url)
     page = driver.find_element(By.ID, 'root')
     inputs = page.find_elements(By.TAG_NAME, "input")
@@ -40,12 +37,14 @@ try:
     buttons = driver.find_elements(By.TAG_NAME, "button")
     # Register model button is button 8
     register_model_button = buttons[8]
-    register_model_button.click()
+    register_model_button.click()    
 
-
-
-
-
+try:
+    # Log In
+    login(driver)
+    # Wait for login
+    time.sleep(1)
+    add_model(driver, model_name, training_job_name)
     
 
 
