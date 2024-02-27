@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from datetime import datetime
 from login import login
+import time
 model_url = 'https://d1lojwke7j5vfp.cloudfront.net/models/create'
 
 chrome_options = webdriver.ChromeOptions()
@@ -13,9 +14,14 @@ chrome_options.add_argument(f'user-agent={user_agent}')
 driver = webdriver.Chrome()
 driver.implicitly_wait(1)
 
+model_url = "https://d1lojwke7j5vfp.cloudfront.net/models/create"
 try:
-
+    # Log In
     login(driver)
+    # Wait for login
+    time.sleep(1)
+    driver.get(model_url)
+
 
 
     
