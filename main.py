@@ -46,10 +46,6 @@ def eval(username, password, alias, job):
     # Submit model
     # submit_model(driver, submit_model_url, job)
 
-    # if is_logging:
-    #     read_data(driver, read_leaderboard_url, alias)
-    # time.sleep(2)
-
     # Log Out
     logout(driver)
 
@@ -74,7 +70,9 @@ def eval(username, password, alias, job):
     time.sleep(2)
     # END_QUIET
 
-
+    # Read the leaderboard
+    read_data(driver, read_leaderboard_url, alias)
+    time.sleep(2)
     
     driver.quit()
 
