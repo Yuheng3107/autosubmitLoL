@@ -10,7 +10,7 @@ import time
 def submit_model(driver, submit_model_url: str, training_job_name: str):
     """Submits the model based on the training job name"""
     driver.get(submit_model_url)
-    time.sleep(1)
+    time.sleep(2)
     buttons = driver.find_elements(By.TAG_NAME, "button")
     # Button index 5 is submit model button
     submit_model_button = buttons[5]

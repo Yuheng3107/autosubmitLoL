@@ -3,7 +3,9 @@ from selenium.webdriver.common.by import By
 import time
 
 def read_data(driver, read_leaderboard_url: str, account_name: str):
-    """This function reads data from the leaderboard and appends it to the logfile"""
+    """This function reads data from the leaderboard and appends it to the logfile
+    If you haven't submitted anything do not run this function
+    """
     driver.get(read_leaderboard_url)
     page = driver.find_element(By.ID, 'root')
     # Need use root as reference, rest is blocked somehow
