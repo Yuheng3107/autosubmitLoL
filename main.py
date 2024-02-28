@@ -46,14 +46,12 @@ def eval(username, password, alias, job):
     # Submit model
     # submit_model(driver, submit_model_url, job)
 
-    # Log Out
-    logout(driver)
-
 
     # for sanity, the driver quits and closes the chrome window while waiting for the job to finish.
     # if you want to keep the window open just comment out the lines between START_QUIET and END_QUIET
 
     # START_QUIET
+    logout(driver)
     driver.quit()
 
     # Wait for 20 minutes
