@@ -46,15 +46,18 @@ def main():
 
     try:
         for i in range(len(models)):
+            if i in [0,1,2,3]:
+                continue
             username = usernames[i]
             password = passwords[i]
             account_name = account_names[i]
+            training_job_name = models[i]
             # Log In
             login(driver, username, password)
             # Wait for login
             time.sleep(1)
             # This is for adding model
-            add_model(driver, create_model_url, model_name, training_job_name)
+            #add_model(driver, create_model_url, model_name, training_job_name)
             time.sleep(1)
             submit_model(driver, submit_model_url, training_job_name)
             if is_logging:
