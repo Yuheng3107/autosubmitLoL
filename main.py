@@ -1,12 +1,8 @@
-import csv
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
 from login import login
 from addModel import add_model
 from submitModel import submit_model
 from readData import read_data
-import schedule
 import time
 model_url = 'https://d1lojwke7j5vfp.cloudfront.net/models/create'
 
@@ -44,7 +40,7 @@ def main():
         # Wait for login
         time.sleep(1)
         # This is for adding model
-        # add_model(driver, create_model_url, model_name, training_job_name)
+        #add_model(driver, create_model_url, model_name, training_job_name)
         submit_model(driver, submit_model_url)
         read_data(driver, read_leaderboard_url, account_name)
 
@@ -54,8 +50,8 @@ def main():
         driver.quit()
 
 for i in range(20):
+    main()
     for i in range(17):
         print(f"Minute: {i+1}")
         time.sleep(60)
-    main()
 
