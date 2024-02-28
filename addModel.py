@@ -16,7 +16,8 @@ def add_model(driver, create_model_url: str, model_name: str, training_job_name:
     inputs = page.find_elements(By.TAG_NAME, "input")
     name_input = inputs[0]
     training_job_input = inputs[1]
-    name_input.send_keys(model_name+str(random.randint(1,9999999999)))
+    name = model_name+str(random.randint(1,9999999999))
+    name_input.send_keys(name)
     training_job_input.send_keys(training_job_name)
     buttons = driver.find_elements(By.TAG_NAME, "button")
     """for i, button in enumerate(buttons):
@@ -29,4 +30,8 @@ def add_model(driver, create_model_url: str, model_name: str, training_job_name:
     # Register model button is button 8
     register_model_button = buttons[8]
     register_model_button.click()    
+    # Want to add functionality to register model Id and training job name
+    #driver.get()
 
+def record_model(model_name):
+    pass

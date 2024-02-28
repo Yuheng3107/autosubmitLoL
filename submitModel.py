@@ -7,7 +7,7 @@ from datetime import datetime
 import time
 
 
-def submit_model(driver, submit_model_url: str):
+def submit_model(driver, submit_model_url: str, training_job_name: str):
     """Submits the model at the top"""
     driver.get(submit_model_url)
     time.sleep(1)
@@ -22,9 +22,14 @@ def submit_model(driver, submit_model_url: str):
     choose_model_button.click()
     time.sleep(1)
     next_button = buttons[7]
+    time.sleep(1)
     list_elements = driver.find_elements(By.TAG_NAME, "li")
     # element with index 9 is the newest model
-    button = list_elements[9]
+    button = None
+    for i, element in enumerate(list_elements):
+        if training_job_name in str(element.text):
+            button = element
+            break
     button.click()
     next_button.click()
     time.sleep(1)

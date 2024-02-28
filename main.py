@@ -8,15 +8,15 @@ model_url = 'https://d1lojwke7j5vfp.cloudfront.net/models/create'
 
 create_model_url = "https://d1lojwke7j5vfp.cloudfront.net/models/create"
 model_name = "test_model"
-training_job_name = "team45-mingjun-6"
+training_job_name = "team45-mingjun-4"
 
 submit_model_url = "https://d1lojwke7j5vfp.cloudfront.net/leaderboard"
 
 read_leaderboard_url = "https://d1lojwke7j5vfp.cloudfront.net/leaderboard"
 # Account Name is needed for bot to search your name to find your result
-account_name = "team45-yh"
+account_name = "team45_yh"
 
-username = 'test_acc'
+username = 'test_account'
 password = 'Password1234!'
 def main():
     chrome_options = webdriver.ChromeOptions()
@@ -41,7 +41,7 @@ def main():
         time.sleep(1)
         # This is for adding model
         #add_model(driver, create_model_url, model_name, training_job_name)
-        submit_model(driver, submit_model_url)
+        submit_model(driver, submit_model_url, training_job_name)
         read_data(driver, read_leaderboard_url, account_name)
 
     finally:
@@ -51,7 +51,7 @@ def main():
 
 for i in range(20):
     main()
-    for i in range(17):
+    for i in range(16):
         print(f"Minute: {i+1}")
         time.sleep(60)
 
