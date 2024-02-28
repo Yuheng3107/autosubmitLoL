@@ -56,7 +56,7 @@ def eval(username, password, alias, job):
 
     # Wait for 20 minutes
     for i in range(20):
-        time.sleep(1)
+        time.sleep(60)
         # prints every 4 minutes so as to not spam the console
         if (i % 4 == 0):
             print(f"Waiting for job to finish: {job} | Time elapsed: {i+1} minutes")
