@@ -8,6 +8,7 @@ import time
 
 
 def submit_model(driver, submit_model_url: str):
+    """Submits the model at the top"""
     driver.get(submit_model_url)
     time.sleep(1)
     buttons = driver.find_elements(By.TAG_NAME, "button")
