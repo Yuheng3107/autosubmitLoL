@@ -17,4 +17,5 @@ def login(driver, username: str, password: str):
     username_input.send_keys(username)
     password_input.send_keys(password)
     button.click()
+    print(f"logged into {username} account successfully")
     # Finished logging in
