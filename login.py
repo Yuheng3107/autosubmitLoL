@@ -2,10 +2,9 @@ from selenium.webdriver.common.by import By
 
 
 login_url = 'https://d1lojwke7j5vfp.cloudfront.net/'
-username = 'test_acc'
-password = 'Password1234!'
 
-def login(driver):
+
+def login(driver, username: str, password: str):
     # Open the website in the browser
     driver.get(login_url)
     page = driver.find_element(By.ID, 'root')

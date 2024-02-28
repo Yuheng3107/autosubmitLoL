@@ -1,12 +1,11 @@
-import random
+import csv
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
-from datetime import datetime
 from login import login
 from addModel import add_model
 from submitModel import submit_model
+from readData import read_data
 import time
 model_url = 'https://d1lojwke7j5vfp.cloudfront.net/models/create'
 
@@ -23,23 +22,41 @@ training_job_name = "team45-mingjun-6"
 
 submit_model_url = "https://d1lojwke7j5vfp.cloudfront.net/leaderboard"
 
+read_leaderboard_url = "https://d1lojwke7j5vfp.cloudfront.net/leaderboard"
+# Account Name is needed for bot to search your name to find your result
+account_name = "team45-yh"
 
-
+username = 'test_acc'
+password = 'Password1234!'
 try:
+    # for i in range(20):
+        
+    #     login(driver, username, password)
+    #     time.sleep(1)
+    #     submit_model(driver, submit_model_url)
+    #     time.sleep(16*60)
+
+
     # Log In
-    login(driver)
+    login(driver, username, password)
     # Wait for login
     time.sleep(1)
     # This is for adding model
     # add_model(driver, create_model_url, model_name, training_job_name)
-    submit_model(driver, submit_model_url)
-    
+    #submit_model(driver, submit_model_url)
+
+    read_data(driver, read_leaderboard_url, account_name)
+
+
+
+
     
     
    
 
 
     
+
 
 
 finally:
