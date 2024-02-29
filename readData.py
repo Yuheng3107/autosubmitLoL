@@ -15,11 +15,18 @@ def read_data(driver, read_leaderboard_url: str, account_name: str):
     data = driver.find_elements(By.TAG_NAME, "td")
     # Index 4 is last submitted win rate, 5 is no of wins, 6 is no of draws, 7 is no of total runs
 
-    model_name = data[1].text
+    model_id = data[1].text
     last_submitted_win_rate = data[4].text
     win_count = data[5].text
     draw_count = data[6].text
     total_runs = data[7].text
+    # Make csv of model mappings into dict
+    model_name = "NULL"
+    with open('models.csv') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row["Model Id"] == model_id:
+                model_name = row["Training Job Name"]
     new_data = [model_name, last_submitted_win_rate, win_count, draw_count, total_runs]
     with open('./logfile.csv', 'a') as file:
         writer = csv.writer(file)
