@@ -89,8 +89,6 @@ def main():
         t = threading.Thread(target=eval, args=args_tuple)
         t.start()
         
-        
-        
 
 
 if __name__ == "__main__":
