@@ -46,7 +46,6 @@ def record_model(driver, model_name: str, training_job_name: str):
     time.sleep(2)
     headers = driver.find_elements(By.TAG_NAME, "th")
     for header in headers:
-        print(header.text)
         if header.text == model_name:
             model_id = header.find_element(By.XPATH, "following-sibling::*[2]")
             time.sleep(1)

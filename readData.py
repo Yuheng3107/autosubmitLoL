@@ -28,7 +28,6 @@ def read_data(driver, account_name: str):
     with open('models.csv') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            print(row)
             if row["Model Id"] == model_id:
                 model_name = row["Training Job Name"]
     new_data = [model_name, last_submitted_win_rate, win_count, draw_count, total_runs]

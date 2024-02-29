@@ -17,15 +17,11 @@ USER_AGENT              = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Apple
 ITERATION_COUNT         = 8
 
 
-usernames = ['test_account', 'test_account1', 'test_account2', 'test_account3', 'test_account4', 'test_account5']
-passwords = ['Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!']
-aliases = ['team45_yh', 'team45_yuheng', 'team45_kyh', 'team45_yhb', 'team_45_yhb2', 'team_45_yhb3']
-jobs = ["team45-mingjun-4",
-"team45-mingjun-5",
-"team45-mingjun-6",
-"team45-mingjun-7",
-"team45-mingjun-8",
-"team45-mingjun-9"]
+usernames = ['test_account', 'test_account1', 'test_account2', 'test_account3', 'test_account4', 'test_account5', 'test_account6', 'test_account7', 'test_account8', 'test_account9']
+passwords = ['Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!']
+aliases = ['team45_yh', 'team45_yuheng', 'team45_kyh', 'team45_yhb', 'team_45_yhb2', 'team_45_yhb3', 'T45_yh_lepaks', 'T45_yh_lepaking', 'team_45_winner', 'team_45_slacker']
+jobs = ["team45-mingjun-6" for i in range(10)
+]
 runs = [
     {
         "username": usernames[i],
@@ -49,8 +45,8 @@ def eval(username, password, alias, job):
     login(driver, username, password)
     time.sleep(1)
     # Add model
-    add_model(driver, job)
-    time.sleep(2)
+    #add_model(driver, job)
+    #time.sleep(2)
 
     # Submit model
     submit_model(driver, job)
@@ -90,8 +86,9 @@ def eval(username, password, alias, job):
 def main():
     for i in range(20):
         # Wait for 20 minutes
-        for i in range(17):
-            time.sleep(60)      
+        if i != 0:
+            for i in range(17):
+                time.sleep(60)      
             
         for run in runs:
             # Create a tuple of values from the dictionary
