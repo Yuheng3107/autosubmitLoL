@@ -80,12 +80,7 @@ def eval(username, password, alias, job):
     #             print(f"[{job}] Job has not finished yet. Waiting for 1 minute.")
     #             time.sleep(60)
 
-    # Wait for 20 minutes
-    for i in range(17):
-        time.sleep(60)
-        # prints every 4 minutes so as to not spam the console
-        if (i % 4 == 0):
-            print(f"[{job}] Waiting for job to finish | Time elapsed: {i+1} minutes")
+    
     
 
     
@@ -93,11 +88,16 @@ def eval(username, password, alias, job):
 
 
 def main():
-    for run in runs:
-        # Create a tuple of values from the dictionary
-        args_tuple = (run["username"], run["password"], run["alias"], run["job"])
-        t = threading.Thread(target=eval, args=args_tuple)
-        t.start()
+    for i in range(20):
+        # Wait for 20 minutes
+        for i in range(17):
+            time.sleep(60)      
+            
+        for run in runs:
+            # Create a tuple of values from the dictionary
+            args_tuple = (run["username"], run["password"], run["alias"], run["job"])
+            t = threading.Thread(target=eval, args=args_tuple)
+            t.start()
         
         
 
