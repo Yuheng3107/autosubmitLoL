@@ -1,20 +1,24 @@
 import random
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime
 import time
+from urls import LEADERBOARD_URL
 
-
-def submit_model(driver, submit_model_url: str, training_job_name: str):
+def submit_model(driver, training_job_name: str) -> bool:
     """Submits the model based on the training job name"""
-    driver.get(submit_model_url)
-    time.sleep(2)
-    buttons = driver.find_elements(By.TAG_NAME, "button")
-    # Button index 5 is submit model button
-    submit_model_button = buttons[5]
+    driver.get(LEADERBOARD_URL)
+
+    timeout = 20
+    wait = WebDriverWait(driver, timeout)
+    submit_model_button = wait.until(EC.presence_of_element_located((By.XPATH, "//button[contains(., '+ Submit your model')]")))
+    if submit_model_button.get_attribute("disabled"):
+        print(f"[{training_job_name}] The submit button is disabled. That means another job is still running. Please wait for it to finish. This function will exit now")
+        return False
     submit_model_button.click()
+
     time.sleep(1)
     buttons = driver.find_elements(By.TAG_NAME, "button")
     # Choose model button is 5
@@ -36,6 +40,7 @@ def submit_model(driver, submit_model_url: str, training_job_name: str):
     buttons = driver.find_elements(By.TAG_NAME, "button")
     submit_button = buttons[8]
     submit_button.click()
+    return True
 
     
     

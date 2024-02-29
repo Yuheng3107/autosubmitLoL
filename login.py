@@ -1,14 +1,19 @@
-from selenium.webdriver.common.by import By
 import time
 
-login_url = 'https://d1lojwke7j5vfp.cloudfront.net/'
-
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from urls import BASE_URL
 
 def login(driver, username: str, password: str):
     # Open the website in the browser
-    driver.get(login_url)
-    time.sleep(1)
-    page = driver.find_element(By.ID, 'root')
+    driver.get(BASE_URL)
+
+    timeout = 20
+    wait = WebDriverWait(driver, timeout)
+    page = wait.until(EC.presence_of_element_located((By.ID, 'root')))
+
     # Need use root as reference, rest is blocked somehow
     username_input = page.find_element(By.ID, 'Username')
     password_input = page.find_element(By.ID, 'Password')

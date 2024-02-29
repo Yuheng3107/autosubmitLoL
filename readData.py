@@ -1,12 +1,15 @@
 import csv
 from selenium.webdriver.common.by import By
 import time
+from urls import LEADERBOARD_URL
 
-def read_data(driver, read_leaderboard_url: str, account_name: str):
+def read_data(driver, account_name: str):
     """This function reads data from the leaderboard and appends it to the logfile
     If you haven't submitted anything do not run this function
     """
-    driver.get(read_leaderboard_url)
+    driver.get(LEADERBOARD_URL)
+    # Make sure the job has completed
+    
     page = driver.find_element(By.ID, 'root')
     # Need use root as reference, rest is blocked somehow
     input_element = page.find_element(By.TAG_NAME, 'input')
