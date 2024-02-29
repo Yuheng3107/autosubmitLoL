@@ -17,7 +17,7 @@ USER_AGENT              = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Apple
 ITERATION_COUNT         = 8
 
 
-usernames = ['test_account']
+usernames = ['test_account', 'test_account1', 'test_account2', 'test_account3', 'test_account4', 'test_account5']
 passwords = ['Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!']
 aliases = ['team45_yh', 'team45_yuheng', 'team45_kyh', 'team45_yhb', 'team_45_yhb2', 'team_45_yhb3']
 jobs = ["team45-mingjun-4",
@@ -45,7 +45,6 @@ def eval(username, password, alias, job):
 
     driver = webdriver.Chrome()
     driver.implicitly_wait(2)
-    print(job)
     # Log In
     login(driver, username, password)
     time.sleep(1)
@@ -54,18 +53,32 @@ def eval(username, password, alias, job):
     time.sleep(2)
 
     # Submit model
-    #submit_model(driver, submit_model_url, job)
-
+    submit_model(driver, job)
+    time.sleep(2)
+    read_data(driver, alias)
+    time.sleep(2)
     # Log Out
     logout(driver)
-
+    time.sleep(1)
 
     # for sanity, the driver quits and closes the chrome window while waiting for the job to finish.
     # if you want to keep the window open just comment out the lines between START_QUIET and END_QUIET
-
+    
+    time.sleep(2)
     # START_QUIET
-    logout(driver)
     driver.quit()
+
+    # Read the leaderboard
+    # for i in range(10):
+    #     if i == 9:
+    #         print(f"[{job}] Job still has not finished yet after {i+1} additional minutes. This driver will quit now.")
+    #     else:
+    #         if (check_job_completed(driver)):
+    #             read_data(driver, alias)
+    #             break
+    #         else:
+    #             print(f"[{job}] Job has not finished yet. Waiting for 1 minute.")
+    #             time.sleep(60)
 
     # Wait for 20 minutes
     for i in range(17):
@@ -75,17 +88,7 @@ def eval(username, password, alias, job):
             print(f"[{job}] Waiting for job to finish | Time elapsed: {i+1} minutes")
     
 
-    # Read the leaderboard
-    for i in range(10):
-        if i == 9:
-            print(f"[{job}] Job still has not finished yet after {i+1} additional minutes. This driver will quit now.")
-        else:
-            if (check_job_completed(driver)):
-                read_data(driver, alias)
-                break
-            else:
-                print(f"[{job}] Job has not finished yet. Waiting for 1 minute.")
-                time.sleep(60)
+    
     
 
 
@@ -95,6 +98,7 @@ def main():
         args_tuple = (run["username"], run["password"], run["alias"], run["job"])
         t = threading.Thread(target=eval, args=args_tuple)
         t.start()
+        
         
 
 
