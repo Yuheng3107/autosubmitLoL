@@ -9,7 +9,8 @@ def analyse():
     with open("logfile.csv") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            d[row["Model Name"]].append(int(row["Number of Wins"]))
+            if row["Model Name"] != "NULL":
+                d[row["Model Name"]].append(int(row["Number of Wins"]))
     # Get highest and lowest for each one, average, and standard deviation
     rows = []
     for job, win_list in d.items():
