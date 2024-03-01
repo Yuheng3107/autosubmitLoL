@@ -1,4 +1,5 @@
 import time
+from get_time import get_time
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -22,5 +23,5 @@ def login(driver, username: str, password: str):
     username_input.send_keys(username)
     password_input.send_keys(password)
     button.click()
-    print(f"logged into {username} account successfully")
+    print(f"[{get_time()}] Logged into {username}")
     # Finished logging in
