@@ -2,6 +2,8 @@ import random
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from urls import MODEL_REGISTRATION_URL, MODELS_URL
 import time
 from log import log
@@ -33,7 +35,8 @@ def add_model(driver, training_job_name: str):
     # Register model button is button 8
     register_model_button = buttons[8]
     register_model_button.click() 
-
+    # Wait for their system to register the model
+    time.sleep(10)
     # Functionality to record model
     record_model(driver, name, training_job_name)
 
@@ -43,16 +46,18 @@ def record_model(driver, model_name: str, training_job_name: str):
     inputs = driver.find_elements(By.TAG_NAME, "input")
     search_input = inputs[0]
     search_input.send_keys(model_name)
-    time.sleep(2)
+    time.sleep(5)
     headers = driver.find_elements(By.TAG_NAME, "th")
     for header in headers:
         if header.text == model_name:
             model_id = header.find_element(By.XPATH, "following-sibling::*[2]")
+            print(model_id.text)
             time.sleep(1)
             with open("models.csv", "a") as f:
                 writer = csv.writer(f)
-                rows = [training_job_name, model_id.text]
-                writer.writerow(rows)
+
+                row = [training_job_name, model_id.text]
+                writer.writerow(row)
 
 
 
