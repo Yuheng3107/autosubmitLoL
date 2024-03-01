@@ -18,10 +18,10 @@ USER_AGENT              = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Apple
 ITERATION_COUNT         = 8
 
 
-usernames = ['test_account', 'test_account1', 'test_account2', 'test_account3', 'test_account4', 'test_account5', 'test_account6', 'test_account7', 'test_account8', 'test_account9']
-passwords = ['Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!', 'Password1234!']
-aliases = ['team45_yh', 'team45_yuheng', 'team45_kyh', 'team45_yhb', 'team_45_yhb2', 'team_45_yhb3', 'T45_yh_lepaks', 'T45_yh_lepaking', 'team_45_winner', 'team_45_slacker']
-jobs = ["team45-mingjun-15v2" for i in range(10)]
+usernames = ['yh_lepaks' + str(i+1) for i in range(10)]
+passwords = ['Password1234!' for i in range(10)]
+aliases = ['team45_yhk', 'team45_yuurei', 'team45_kuang', 'team45_yu', 'team_45_heng', 'team_45_hengheng', 'T45_tired', 'T45_animeaddict', 'team_45_noveladdict', 'team_45_shag']
+jobs = ["team45-mingjun-27" for i in range(5)] + ["team45-mingjun-15-v2" for i in range(5)]
 runs = [
     {
         "username": usernames[i],
