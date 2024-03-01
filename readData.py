@@ -31,6 +31,9 @@ def read_data(driver, account_name: str):
         for row in reader:
             if row["Model Id"] == model_id:
                 model_name = row["Training Job Name"]
+    if model_name == "NULL":
+        print("Couldn't identify model")
+        return
     new_data = [model_name, last_submitted_win_rate, win_count, draw_count, total_runs]
     with open('./logfile.csv', 'a') as file:
         writer = csv.writer(file)

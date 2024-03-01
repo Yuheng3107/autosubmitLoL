@@ -51,7 +51,6 @@ def record_model(driver, model_name: str, training_job_name: str):
     for header in headers:
         if header.text == model_name:
             model_id = header.find_element(By.XPATH, "following-sibling::*[2]")
-            print(model_id.text)
             time.sleep(1)
             with open("models.csv", "a") as f:
                 writer = csv.writer(f)
