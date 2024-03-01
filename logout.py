@@ -1,4 +1,5 @@
 import time
+from get_time import get_time
 from selenium.webdriver.common.by import By
 
 def logout(driver):
@@ -11,3 +12,4 @@ def logout(driver):
     list_elements = driver.find_elements(By.TAG_NAME, "li")
     sign_out_button = list_elements[0]
     sign_out_button.click()
+    print(f"[{get_time()}] Logged out")

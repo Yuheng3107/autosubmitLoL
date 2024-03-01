@@ -1,4 +1,5 @@
 import csv
+from get_time import get_time
 from selenium.webdriver.common.by import By
 import time
 from urls import LEADERBOARD_URL
@@ -34,6 +35,7 @@ def read_data(driver, account_name: str):
     with open('./logfile.csv', 'a') as file:
         writer = csv.writer(file)
         writer.writerow(new_data)
+    print(f"[{get_time()}] Saved data for {model_name}")
 
 
 

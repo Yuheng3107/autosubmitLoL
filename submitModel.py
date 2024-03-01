@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 from urls import LEADERBOARD_URL
+from get_time import get_time
 
 def submit_model(driver, training_job_name: str) -> bool:
     """Submits the model based on the training job name"""
@@ -39,6 +40,7 @@ def submit_model(driver, training_job_name: str) -> bool:
     buttons = driver.find_elements(By.TAG_NAME, "button")
     submit_button = buttons[8]
     submit_button.click()
+    print(f"[{get_time()}] Submitted model {training_job_name}")
     return True
 
     
