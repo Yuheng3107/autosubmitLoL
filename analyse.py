@@ -14,8 +14,8 @@ def analyse():
     rows = [["Mean", "Highest","Lowest", "Standard Deviation", "Count"]]
     for job, win_list in d.items():
         data = np.array(win_list)
-        std_dev = np.std(data)
-        mean = np.mean(data)
+        std_dev = np.round(np.std(data),2)
+        mean = np.round(np.mean(data),1)
         highest = np.max(data)
         lowest = np.min(data)
         count = len(win_list)
